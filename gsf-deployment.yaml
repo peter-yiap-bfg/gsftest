@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: gsftest
+spec:
+  template:
+    metadata:
+      labels:
+        app: gsftest
+    spec:
+      containers:
+        - name: gsftest
+          image: pyiap/gsftest:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8080
+            - name: admin
+              containerPort: 8081
+      imagePullSecrets:
+      - name: regcred
